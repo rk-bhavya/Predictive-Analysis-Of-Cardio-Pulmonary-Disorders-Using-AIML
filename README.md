@@ -1,0 +1,2 @@
+# Predictive-Analysis-Of-Cardio-Pulmonary-Disorders-Using-AIML
+In this project, an AI-based approach is designed to identify lung and heart diseases by applying CNN to learn image patterns associated with lung abnormalities and a ML model, Random Forest to assess heart disease risk using structured medical data.  Additionally, an integrated GenAI chatbot assists users by answering health-related queries.
