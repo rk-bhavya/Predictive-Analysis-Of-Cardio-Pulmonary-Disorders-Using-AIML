@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  server:
+    build: ./docai-server
+    container_name: docai-server
+    env_file:
+      - ./docai-server/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./docai-server:/code
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    networks:
+      - docai-network
+
+  client:
+    build: ./docai-client
+    container_name: docai-client
+    ports:
+      - "3000:3000"
+    environment:
+      # IMPORTANT: Use service name "server" instead of localhost,
+      # because inside Docker, containers talk via network names.
+      - REACT_APP_API_URL=http://server:8000
+    stdin_open: true
+    tty: true
+    networks:
+      - docai-network
+
+networks:
+  docai-network:
+    driver: bridge
